@@ -8,17 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		1B9848F129B56F7D005EFE76 /* tca_omikujiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9848F029B56F7D005EFE76 /* tca_omikujiApp.swift */; };
-		1B9848F329B56F7D005EFE76 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9848F229B56F7D005EFE76 /* ContentView.swift */; };
+		1B9848F329B56F7D005EFE76 /* OmikujiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9848F229B56F7D005EFE76 /* OmikujiView.swift */; };
 		1B9848F529B56F7E005EFE76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B9848F429B56F7E005EFE76 /* Assets.xcassets */; };
 		1B9848F829B56F7E005EFE76 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B9848F729B56F7E005EFE76 /* Preview Assets.xcassets */; };
+		1B98490029B56F9F005EFE76 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 1B9848FF29B56F9F005EFE76 /* ComposableArchitecture */; };
+		1B98490229B56FA8005EFE76 /* Omikuji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98490129B56FA8005EFE76 /* Omikuji.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1B9848ED29B56F7D005EFE76 /* tca_omikuji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tca_omikuji.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B9848F029B56F7D005EFE76 /* tca_omikujiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tca_omikujiApp.swift; sourceTree = "<group>"; };
-		1B9848F229B56F7D005EFE76 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1B9848F229B56F7D005EFE76 /* OmikujiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmikujiView.swift; sourceTree = "<group>"; };
 		1B9848F429B56F7E005EFE76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B9848F729B56F7E005EFE76 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1B98490129B56FA8005EFE76 /* Omikuji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Omikuji.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B98490029B56F9F005EFE76 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,7 +56,8 @@
 			isa = PBXGroup;
 			children = (
 				1B9848F029B56F7D005EFE76 /* tca_omikujiApp.swift */,
-				1B9848F229B56F7D005EFE76 /* ContentView.swift */,
+				1B9848F229B56F7D005EFE76 /* OmikujiView.swift */,
+				1B98490129B56FA8005EFE76 /* Omikuji.swift */,
 				1B9848F429B56F7E005EFE76 /* Assets.xcassets */,
 				1B9848F629B56F7E005EFE76 /* Preview Content */,
 			);
@@ -83,6 +88,9 @@
 			dependencies = (
 			);
 			name = tca_omikuji;
+			packageProductDependencies = (
+				1B9848FF29B56F9F005EFE76 /* ComposableArchitecture */,
+			);
 			productName = tca_omikuji;
 			productReference = 1B9848ED29B56F7D005EFE76 /* tca_omikuji.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +119,9 @@
 				Base,
 			);
 			mainGroup = 1B9848E429B56F7D005EFE76;
+			packageReferences = (
+				1B9848FE29B56F9F005EFE76 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			productRefGroup = 1B9848EE29B56F7D005EFE76 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,7 +148,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B9848F329B56F7D005EFE76 /* ContentView.swift in Sources */,
+				1B9848F329B56F7D005EFE76 /* OmikujiView.swift in Sources */,
+				1B98490229B56FA8005EFE76 /* Omikuji.swift in Sources */,
 				1B9848F129B56F7D005EFE76 /* tca_omikujiApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,6 +351,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1B9848FE29B56F9F005EFE76 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1B9848FF29B56F9F005EFE76 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B9848FE29B56F9F005EFE76 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1B9848E529B56F7D005EFE76 /* Project object */;
 }

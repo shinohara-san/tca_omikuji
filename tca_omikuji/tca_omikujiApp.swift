@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct tca_omikujiApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            OmikujiView(store: Store(
+                initialState: Omikuji.State(),
+                reducer: Omikuji())
+            )
         }
     }
 }
