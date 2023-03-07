@@ -40,9 +40,6 @@ struct Omikuji: ReducerProtocol {
                 state.imageName = "omikuji"
 //                state = Omikuji.State()
                 return .none
-            case .binding(\.$isOmikujiOn):
-                state.isOmikujiOn = state.isOmikujiOn
-                return .none
             case .binding:
                 return .none
             }
