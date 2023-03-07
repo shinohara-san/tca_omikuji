@@ -10,31 +10,42 @@ import ComposableArchitecture
 struct Omikuji: ReducerProtocol {
     struct State: Equatable {
         var imageName: String = "omikuji"
+        @BindingState var isOmikujiOn = true
     }
     
-    enum Action: Equatable {
+    enum Action: BindableAction, Equatable {
         case omikujiButtonTapped
         case resetButtonTapped
+        case binding(BindingAction<State>)
     }
 
-    func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
-        switch action {
-        case .omikujiButtonTapped:
-            let num = Int.random(in: 0...2)
-            switch num {
-            case 0:
-                state.imageName = "daikichi"
-            case 1:
-                state.imageName = "kichi"
-            case 2:
-                state.imageName = "kyou"
-            default:
-                fatalError("Unexpected num")
+    var body: some ReducerProtocol<State, Action> {
+        BindingReducer()
+        Reduce { state, action in
+            switch action {
+            case .omikujiButtonTapped:
+                let num = Int.random(in: 0...2)
+                switch num {
+                case 0:
+                    state.imageName = "daikichi"
+                case 1:
+                    state.imageName = "kichi"
+                case 2:
+                    state.imageName = "kyou"
+                default:
+                    fatalError("Unexpected num")
+                }
+                return .none
+            case .resetButtonTapped:
+                state.imageName = "omikuji"
+//                state = Omikuji.State()
+                return .none
+            case .binding(\.$isOmikujiOn):
+                state.isOmikujiOn = state.isOmikujiOn
+                return .none
+            case .binding:
+                return .none
             }
-            return .none
-        case .resetButtonTapped:
-            state.imageName = "omikuji"
-            return .none
         }
     }
 }

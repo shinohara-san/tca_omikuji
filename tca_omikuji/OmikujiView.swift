@@ -22,17 +22,22 @@ struct OmikujiView: View {
                         viewStore.send(.resetButtonTapped)
                     }
                     .buttonStyle(.bordered)
-                    .background(.red)
+                    .background(viewStore.isOmikujiOn ? .red : .secondary)
                     .foregroundColor(.white)
+                    .disabled(!viewStore.isOmikujiOn)
                     
                     Button("Omikuji") {
                         viewStore.send(.omikujiButtonTapped)
                     }
                     .buttonStyle(.bordered)
-                    .background(.green)
+                    .background(viewStore.isOmikujiOn ? .green : .secondary)
                     .foregroundColor(.white)
+                    .disabled(!viewStore.isOmikujiOn)
                 }
                 .padding()
+
+                Toggle("Turn \(viewStore.isOmikujiOn ? "off" : "on") Omikuji", isOn: viewStore.binding(\.$isOmikujiOn))
+                    .padding()
             }
             .padding()
         }
