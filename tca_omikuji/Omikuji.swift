@@ -12,13 +12,16 @@ struct Omikuji: ReducerProtocol {
         var imageName: String = Luck.default.rawValue
         @BindingState var isOmikujiOn = true
         var alert: AlertState<Action>?
+        var confirmationDialog: ConfirmationDialogState<Action>?
     }
     
     enum Action: BindableAction, Equatable {
         case omikujiButtonTapped
         case resetButtonTapped
+        case resetOmikuji
         case binding(BindingAction<State>)
         case alertDismissed
+        case confirmationDialogDismissed
     }
 
     var body: some ReducerProtocol<State, Action> {
@@ -40,12 +43,33 @@ struct Omikuji: ReducerProtocol {
                 state.alert = AlertState { TextState(Luck(rawValue: state.imageName)?.alertTitle ?? "Error") }
                 return .none
             case .resetButtonTapped:
+                if state.imageName == Luck.default.rawValue {
+                    state.alert = AlertState { TextState("Get your Omikuji first") }
+                    return .none
+                }
+                state.confirmationDialog = ConfirmationDialogState {
+                    TextState("これどこで使われてる？")
+                } actions: {
+                    ButtonState(role: .cancel) {
+                        TextState("No, I don't want to")
+                    }
+                    ButtonState(action: .resetOmikuji) {
+                        TextState("Yes, please")
+                    }
+                } message: {
+                    TextState("Are you sure to reset?")
+                }
+                return .none
+            case .resetOmikuji:
                 state.imageName = Luck.`default`.rawValue
                 return .none
             case .binding:
                 return .none
             case .alertDismissed:
                 state.alert = nil
+                return .none
+            case .confirmationDialogDismissed:
+                state.confirmationDialog = nil
                 return .none
             }
         }

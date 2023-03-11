@@ -44,6 +44,8 @@ struct OmikujiView: View {
         .alert(self.store.scope(state: \.alert),
                dismiss: .alertDismissed
         )
+        .confirmationDialog(self.store.scope(state: \.confirmationDialog),
+                            dismiss: .confirmationDialogDismissed)
     }
 }
 

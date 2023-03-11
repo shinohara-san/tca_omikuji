@@ -7,3 +7,4 @@ Learning TCA little by little
 - Basics
 - Binding
 - Alert
+- Confirmation
