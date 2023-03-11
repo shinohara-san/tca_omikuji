@@ -9,14 +9,16 @@ import ComposableArchitecture
 
 struct Omikuji: ReducerProtocol {
     struct State: Equatable {
-        var imageName: String = "omikuji"
+        var imageName: String = Luck.default.rawValue
         @BindingState var isOmikujiOn = true
+        var alert: AlertState<Action>?
     }
     
     enum Action: BindableAction, Equatable {
         case omikujiButtonTapped
         case resetButtonTapped
         case binding(BindingAction<State>)
+        case alertDismissed
     }
 
     var body: some ReducerProtocol<State, Action> {
@@ -27,22 +29,42 @@ struct Omikuji: ReducerProtocol {
                 let num = Int.random(in: 0...2)
                 switch num {
                 case 0:
-                    state.imageName = "daikichi"
+                    state.imageName = Luck.daikichi.rawValue
                 case 1:
-                    state.imageName = "kichi"
+                    state.imageName = Luck.kichi.rawValue
                 case 2:
-                    state.imageName = "kyou"
+                    state.imageName = Luck.kyou.rawValue
                 default:
                     fatalError("Unexpected num")
                 }
+                state.alert = AlertState { TextState(Luck(rawValue: state.imageName)?.alertTitle ?? "Error") }
                 return .none
             case .resetButtonTapped:
-                state.imageName = "omikuji"
-//                state = Omikuji.State()
+                state.imageName = Luck.`default`.rawValue
                 return .none
             case .binding:
                 return .none
+            case .alertDismissed:
+                state.alert = nil
+                return .none
             }
+        }
+    }
+}
+
+enum Luck: String {
+    case daikichi, kichi, kyou, `default` = "omikuji"
+
+    var alertTitle: String {
+        switch self {
+        case .daikichi:
+            return "大吉"
+        case .kichi:
+            return "吉"
+        case .kyou:
+            return "凶"
+        default:
+            fatalError("Unexpected case")
         }
     }
 }
